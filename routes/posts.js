@@ -12,7 +12,7 @@ const router = express.Router();
 const sqlite3 = require("sqlite3").verbose();
 const db = new sqlite3.Database("./database.sqlite");
 
-// 一覧取得 API：GET
+// 記事一覧取得 API：GET
 router.get("/", (req, res) => {
   db.all("SELECT * FROM posts", (err, rows) => {
     if (err) {
@@ -27,6 +27,7 @@ router.get("/", (req, res) => {
 // 記事詳細取得 API：GET
 router.get("/:id", (req, res) => {
   const postId = req.params.id;
+
   db.get("SELECT * FROM posts WHERE id = ?", [postId], (err, row) => {
     if (err) {
       res.status(500).json({ error: "データ取得に失敗しました" });
@@ -103,6 +104,30 @@ router.delete("/:id", (req, res) => {
       res.json({ message: "記事を削除しました" });
     }
   });
+});
+
+// コメント一覧取得 API：GET
+router.get("/:id/comments", (req, res) => {
+  const postId = req.params.id;
+
+  // 仮のコメントデータを返す
+  const dummyComments = [
+    {
+      id: 1,
+      postId: Number(postId),
+      name: "ダミー太郎",
+      email: "dummy@example.com",
+      body: "これは仮のコメントです。",
+    },
+    {
+      id: 2,
+      postId: Number(postId),
+      name: "仮山 花子",
+      email: "kari@example.com",
+      body: "テスト中のコメントです。",
+    },
+  ];
+  res.json(dummyComments);
 });
 
 module.exports = router;

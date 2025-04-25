@@ -40,8 +40,8 @@ const db = new sqlite3.Database("./database.sqlite", (err) => {
   db.run(`
         CREATE TABLE IF NOT EXISTS posts (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
-          title TEXT NOT NULL, -- タイトル
-          content TEXT NOT NULL, -- 本文
+          title TEXT NOT NULL, -- 記事タイトル
+          content TEXT NOT NULL, -- 記事本文
           createdAt TEXT NOT NULL, -- 作成日時
           updatedAt TEXT NOT NULL -- 更新日時
         )
