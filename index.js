@@ -74,6 +74,6 @@ db.get(
 );
 
 // サーバーを起動
-app.listen(PORT, () => {
-  console.log(`サーバー起動中：http://localhost:${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`サーバー起動中：http://0.0.0.0:${PORT}`);
 });
