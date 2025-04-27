@@ -10,6 +10,10 @@
 const express = require("express");
 // アプリのインスタンスを作成
 const app = express();
+// corsを読み込む
+const cors = require("cors");
+// CORSを許可する
+app.use(cors());
 // ポート番号の設定
 const PORT = 3000;
 
