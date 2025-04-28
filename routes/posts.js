@@ -64,7 +64,7 @@ router.post("/", (req, res) => {
   );
 });
 
-// 記事更新 API：PUT
+// 記事編集 API：PUT
 router.put("/:id", (req, res) => {
   const postId = req.params.id;
   const { title, content } = req.body;
@@ -74,6 +74,7 @@ router.put("/:id", (req, res) => {
   // 更新日時を設定
   const updatedAt = new Date().toISOString();
 
+  
   db.run(
     "UPDATE posts SET title = ?, content = ?, updatedAt = ? WHERE id = ?",
     [title, content, updatedAt, postId],
