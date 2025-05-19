@@ -78,6 +78,11 @@ db.get(
 );
 
 // サーバーを起動
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`サーバー起動中：http://0.0.0.0:${PORT}`);
+// 本番環境用：Render対応
+// app.listen(PORT, "0.0.0.0", () => {
+//   console.log(`サーバー起動中：http://0.0.0.0:${PORT}`);
+// });
+// 開発環境用：Cypressテスト時
+app.listen(PORT, "localhost", () => {
+  console.log(`サーバー起動中：http://localhost:${PORT}`);
 });
